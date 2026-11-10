@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "supportPhone": "(866) 335-0202",
+  "faqs": [
+    {
+      "id": 1,
+      "question": "My internet has been out for the last 2 hours.",
+      "answer": "I’m sorry your internet has been out for the last two hours. Let me first verify the account, then I’ll check for any outage in your area and run basic line tests; meanwhile please unplug the modem/router power for 30 seconds and plug it back in. If it doesn’t restore, I’ll schedule a technician or create a repair ticket and confirm the soonest available time."
+    },
+    {
+      "id": 2,
+      "question": "My TV service is not working at all.",
+      "answer": "I’m sorry your TV isn’t working. After I verify the account, I’ll check if there’s an outage or signal issue, and we’ll try a quick reset of the receiver/app. If it’s still down, I’ll place a repair request and arrange a technician if needed."
+    },
+    {
+      "id": 3,
+      "question": "I want a new internet connection installed at my place.",
+      "answer": "I can help you set up a new internet installation. I’ll confirm your service address, check availability (fiber/DSL/cable options), then go over plans, pricing, and install timelines. Once you choose a package, I’ll schedule the installation and confirm all order details."
+    },
+    {
+      "id": 4,
+      "question": "I want to subscribe to new TV services (channels or package).",
+      "answer": "I can help you subscribe to a new TV package. First I’ll confirm what channels you want (sports, international, premium, local), then I’ll share the package options and total monthly cost including equipment if required. Once you pick one, I’ll place the order and confirm activation timing."
+    },
+    {
+      "id": 5,
+      "question": "I want to add a mobile line to my current package.",
+      "answer": "No problem — I can add a mobile line to your package if the plan supports it. I’ll verify the account, confirm how many lines you need, and check eligibility for any multi-line promotions. Then we’ll complete the line addition and confirm SIM/eSIM delivery and activation steps."
+    },
+    {
+      "id": 6,
+      "question": "I need a technician to come and install my services.",
+      "answer": "I can definitely arrange a technician visit. After verifying your account and address, I’ll check available appointment slots and book the earliest one that works for you. I’ll also confirm any technician fees (if applicable) before finalizing."
+    },
+    {
+      "id": 7,
+      "question": "I want to pay my bill for this month.",
+      "answer": "I can guide you to make your payment securely right now. After verification, you can pay through the official app/portal or the provider’s automated payment system; if you prefer, I can also connect you to the billing/payment line. Once done, I’ll confirm the payment confirmation and updated balance."
+    },
+    {
+      "id": 8,
+      "question": "I want to change my payment method (bank/card/mobile wallet).",
+      "answer": "I can help you update your payment method. After verifying your account, we’ll switch your bank/card/wallet details using the secure billing method (app/portal or billing support). I’ll also confirm if autopay is enabled and whether it affects your monthly discount."
+    },
+    {
+      "id": 9,
+      "question": "My bill this month is too high and I don’t understand the charges.",
+      "answer": "I understand — a higher bill can be frustrating. I’ll verify your account and then review the bill line-by-line with you to identify changes like prorations, equipment fees, plan changes, overage/roaming charges, or expired promos. If anything looks incorrect, I’ll help you raise a billing dispute/adjustment request with the billing team."
+    },
+    {
+      "id": 10,
+      "question": "I want to cancel my services (internet, TV or mobile).",
+      "answer": "I can help with cancellation, but before we proceed I want to make sure you’re aware of any contract terms, equipment return steps, and possible early termination fees. If you still want to cancel, I’ll verify the account and process the disconnect request or connect you to the cancellations/retention department. I’ll also confirm the final billing date and return instructions."
+    },
+    {
+      "id": 11,
+      "question": "I am not receiving certain TV channels that I should get under my package.",
+      "answer": "I’m sorry you’re missing channels that should be included. After verifying the account, I’ll confirm your subscribed package and then we’ll refresh/re-authorize the TV service and check your receiver/app settings. If the channels still don’t appear, I’ll open a ticket to correct the provisioning and confirm the resolution timeline."
+    },
+    {
+      "id": 12,
+      "question": "I want someone to bury/route my cable lines properly (indoor/outdoor wiring).",
+      "answer": "I understand — exposed lines can be unsafe. I’ll verify the address and place a request for proper cable routing/burying, then confirm if it’s handled by the provider team or requires a specialized appointment. I’ll schedule the visit and explain any fees if they apply."
+    },
+    {
+      "id": 13,
+      "question": "I want to change my WIFI password.",
+      "answer": "Yes, I can help you change your Wi-Fi password. I’ll guide you to your router settings (or the provider app) to update the network password and ensure you’re using WPA2/WPA3 security. After that, you’ll reconnect your devices using the new password."
+    },
+    {
+      "id": 14,
+      "question": "I haven’t received the set-top box / modem / router I ordered.",
+      "answer": "I’m sorry you haven’t received your equipment. I’ll verify the account, confirm the shipping address, and check the order/shipping status. If it’s delayed or lost, I’ll request a replacement shipment and share the updated delivery estimate."
+    },
+    {
+      "id": 15,
+      "question": "The technician your company sent misbehaved with me / was unprofessional.",
+      "answer": "I’m really sorry to hear that experience with the technician. I’ll document the details, verify the appointment date/time, and file a complaint with the provider’s dispatch/management team. If you want, I can also arrange a different technician for any follow-up work."
+    },
+    {
+      "id": 16,
+      "question": "My mobile data is extremely slow and keeps dropping.",
+      "answer": "I understand — slow mobile data is frustrating. After verification, I’ll check if there’s a local outage or network congestion and confirm your plan and data usage. Then we’ll try quick fixes like toggling airplane mode, resetting network settings, and confirming APN settings; if it continues, I’ll escalate it to network support."
+    },
+    {
+      "id": 17,
+      "question": "My mobile calls drop frequently or there’s no signal indoors.",
+      "answer": "Thanks for explaining — indoor signal issues are common but fixable. I’ll verify the account and check for tower issues in your area, then we’ll try basic troubleshooting (airplane mode, network reset, Wi-Fi calling if available). If needed, I’ll open a network ticket and discuss coverage solutions."
+    },
+    {
+      "id": 18,
+      "question": "My internet speed is much less than what was promised in my plan.",
+      "answer": "I’m sorry your speed is below what you were promised. I’ll check for outages and run diagnostics, and I’ll ask you to test speed using a wired connection if possible. If speeds are consistently below plan levels, I’ll schedule a technician or escalate for line optimization."
+    },
+    {
+      "id": 19,
+      "question": "I’m experiencing frequent outages of internet/TV/mobile in my area.",
+      "answer": "I can help with repeated outages. After verification, I’ll check the outage reports for your area and the health of your line/service history. If this is recurring, I’ll create an escalation ticket and arrange a technician visit, then keep you updated on resolution."
+    },
+    {
+      "id": 20,
+      "question": "The on-screen TV guide / menu is not showing correctly or is lagging.",
+      "answer": "I understand — a lagging TV guide is annoying. We’ll start with a quick reboot and software refresh for your set-top box/app, and check for any known service issues. If the issue persists, I’ll arrange a replacement device or open a support ticket."
+    },
+    {
+      "id": 21,
+      "question": "I got charged extra for TV/mobile services I did not opt into.",
+      "answer": "I’m sorry you were charged for services you didn’t authorize. I’ll review your account changes and the exact line items, and we’ll confirm whether it’s an add-on, upgrade, or third-party charge. If it’s not valid, I’ll help you remove it and submit a billing dispute/credit request."
+    },
+    {
+      "id": 22,
+      "question": "I moved house and want to shift my internet/TV services to the new address.",
+      "answer": "Yes — we can move your services to a new address. I’ll verify both addresses, check service availability at the new location, and schedule the transfer date. I’ll also confirm if any equipment needs to be returned or re-installed."
+    },
+    {
+      "id": 23,
+      "question": "The router/modem keeps restarting by itself or overheats.",
+      "answer": "Understood — random restarts/overheating usually point to power, placement, or device failure. We’ll try changing the power outlet, ensuring ventilation, and checking firmware updates. If it keeps happening, I’ll arrange a replacement modem/router or a technician visit."
+    },
+    {
+      "id": 24,
+      "question": "The mobile number I want to port in/out is showing errors.",
+      "answer": "I can help with the porting error. I’ll confirm the number being ported, the correct account number, billing ZIP, and port-out PIN, and verify the line is active and information matches exactly. Then I’ll resubmit the port request or escalate to the porting team."
+    },
+    {
+      "id": 25,
+      "question": "I requested a new service activation and it was delayed well beyond the committed date.",
+      "answer": "I’m sorry your activation was delayed. I’ll verify the order details and check the latest status and reason for delay (facility, technician availability, provisioning). Then I’ll escalate the order, request the earliest available completion date, and keep you updated."
+    },
+    {
+      "id": 26,
+      "question": "My home WIFI network keeps dropping or devices are losing connectivity.",
+      "answer": "I can help stabilize your Wi-Fi. We’ll check placement of the router, interference, and whether the issue is Wi-Fi only or full internet drops. I’ll guide you through channel optimization and device checks, and if needed we’ll arrange a technician or add a mesh/extender solution."
+    },
+    {
+      "id": 27,
+      "question": "There is no WIFI coverage in part of my house/apartment.",
+      "answer": "If you have dead zones, we can fix coverage. I’ll ask about your home size/layout and where the router is located, then recommend better placement or a mesh system/extender if needed. If it’s provider equipment, we can also schedule a visit for signal optimization."
+    },
+    {
+      "id": 28,
+      "question": "The TV picture quality or channel signal is poor (pixelation, freezing).",
+      "answer": "Pixelation/freezing usually means signal or device issues. We’ll check cable connections, reboot the receiver/app, and run a signal check. If the signal is weak or fluctuating, I’ll schedule a technician or replace the equipment."
+    },
+    {
+      "id": 29,
+      "question": "The mobile SIM or eSIM activation is not working.",
+      "answer": "I can help you get your SIM/eSIM activated. I’ll verify the line, confirm device compatibility, and check the activation status on the account. Then I’ll guide you through the correct steps (restart, remove/re-add eSIM, update carrier settings) and escalate if activation is stuck."
+    },
+    {
+      "id": 30,
+      "question": "I want to change my internet package (upgrade or downgrade).",
+      "answer": "Sure — we can change your internet package. I’ll confirm your usage needs and what speeds are available at your address, then explain pricing and any promo/contract differences. Once you choose, I’ll process the upgrade/downgrade and confirm when it takes effect."
+    },
+    {
+      "id": 31,
+      "question": "I want to change my TV subscription package (add/remove channels).",
+      "answer": "Yes — we can adjust your TV subscription. I’ll confirm which channels you want to add/remove and share the updated monthly total including equipment and taxes/fees where applicable. After that, I’ll apply the change and confirm activation timing."
+    },
+    {
+      "id": 32,
+      "question": "I was promised a promotional discount but it is not applied in my bill.",
+      "answer": "I understand — if a promised discount isn’t applied, we should fix it. I’ll review the promo eligibility, start date, and any requirements like autopay/paperless billing. If it should be active, I’ll submit a correction request and confirm the expected credit/timeline."
+    },
+    {
+      "id": 33,
+      "question": "My router/modem equipment is faulty and needs replacement.",
+      "answer": "If the equipment is faulty, we’ll get it replaced. We’ll run a quick diagnostic (lights, reset, connection test), and if it still fails, I’ll arrange a replacement shipment or technician swap. I’ll also confirm whether there’s any equipment fee or warranty coverage."
+    },
+    {
+      "id": 34,
+      "question": "My mobile billing cycle showed unexpected roaming or data charges.",
+      "answer": "I can help explain unexpected roaming/data charges. I’ll review the usage details and billing cycle with you, check for roaming settings or background apps, and confirm whether any international/roaming pack was active. If something looks incorrect, I’ll help dispute it and add safeguards for the future."
+    },
+    {
+      "id": 35,
+      "question": "The technician installed services but wiring is messy and unsafe.",
+      "answer": "I’m sorry the wiring was left messy — that’s not acceptable. I’ll document it and schedule a follow-up technician to tidy and secure the wiring properly. I’ll also file a quality complaint for the original visit."
+    },
+    {
+      "id": 36,
+      "question": "My set-top box is not responding or remote control is not working.",
+      "answer": "We can fix that. First we’ll try replacing remote batteries, re-pairing the remote, and rebooting the set-top box. If it still doesn’t respond, I’ll arrange a replacement remote/device or a technician visit."
+    },
+    {
+      "id": 37,
+      "question": "My mobile number’s voicemail / call forwarding / value-added service is not configured.",
+      "answer": "I can help set up voicemail and call forwarding. After verifying the account, I’ll confirm what feature you want and guide you through activation steps in the phone settings or carrier codes/app. If it’s not provisioning correctly, I’ll open a ticket to enable the feature on the line."
+    },
+    {
+      "id": 38,
+      "question": "My internet modem/router’s lights indicate a fault but I don’t know what it means.",
+      "answer": "No worries — the lights usually tell us exactly what’s wrong. I’ll ask which lights are on/blinking and their colors, then guide you through the correct fix (power cycle, cable check, reset). If the fault light persists, I’ll schedule a technician or equipment replacement."
+    },
+    {
+      "id": 39,
+      "question": "The TV app or streaming service included in my package isn’t accessible.",
+      "answer": "I can help you access the included streaming service. I’ll verify your subscription includes it, then we’ll check login/activation steps and ensure your account is linked properly. If access is still blocked, I’ll open a provisioning ticket and confirm the resolution window."
+    },
+    {
+      "id": 40,
+      "question": "I want to change the primary account holder or transfer services to a new name.",
+      "answer": "Yes — we can transfer the account to a new name. I’ll confirm what documents/verification are required and whether a credit check is needed depending on the provider. Then we’ll submit the transfer request and confirm when the new account holder takes effect."
+    },
+    {
+      "id": 41,
+      "question": "My mobile network shows full bars but calls still drop or data doesn’t work.",
+      "answer": "If you have full bars but calls/data fail, it may be provisioning or network settings. We’ll try airplane mode, network reset, and confirm VoLTE/5G settings and carrier update. If it continues, I’ll open a network ticket and check if there’s tower maintenance in your area."
+    },
+    {
+      "id": 42,
+      "question": "The cable lines outside the building are damaged (cut, burned, rodent damage) and cause outages.",
+      "answer": "I’m sorry — damaged outside lines can definitely cause outages. I’ll verify the address and create a repair request for outside plant/line team to inspect and fix it. I’ll also set expectations on the visit window and safety precautions."
+    },
+    {
+      "id": 43,
+      "question": "I believe someone else is using my WIFI (unauthorized devices connected).",
+      "answer": "I can help secure your Wi-Fi. We’ll change your Wi-Fi password, ensure strong encryption (WPA2/WPA3), and remove any unknown devices from the router’s connected list. If needed, we can also set up a guest network and disable WPS for better security."
+    },
+    {
+      "id": 44,
+      "question": "I want to review my billing history and get explanation of past 6 months.",
+      "answer": "Absolutely — we can review the last six months. I’ll pull the billing history and explain any recurring charges, one-time fees, plan changes, equipment fees, and promo changes. If you spot anything you don’t recognize, I’ll help dispute it or clarify it with billing."
+    },
+    {
+      "id": 45,
+      "question": "My mobile handset is supported by your network but certain features (VoLTE/5G) are not working.",
+      "answer": "If VoLTE/5G isn’t working, we’ll check device compatibility, SIM/eSIM provisioning, and whether your plan supports those features. I’ll guide you through enabling the right phone settings and updating carrier settings. If it still doesn’t work, I’ll escalate to ensure the line is provisioned correctly."
+    },
+    {
+      "id": 46,
+      "question": "I’m moving abroad / changing region and want to modify my mobile plan accordingly.",
+      "answer": "If you’re moving abroad, we can modify your plan depending on your needs. I’ll review options like pausing, international roaming packs, or canceling to avoid surprise charges. Then we’ll process the change and confirm the effective date and any final bill details."
+    },
+    {
+      "id": 47,
+      "question": "The company mis-sold me a bundle (internet + TV + mobile) and I want to split or cancel part of it.",
+      "answer": "I understand — if the bundle wasn’t clearly explained, we should correct it. I’ll review what services are active, confirm what you intended to keep, and explain any contract impacts or fees. Then I’ll help split the bundle or cancel the portion you don’t want and confirm the new pricing."
+    },
+    {
+      "id": 48,
+      "question": "I want a technician to inspect and fix internal wiring (house/apartment) for better signal.",
+      "answer": "Yes — internal wiring issues can affect signal and speed. I’ll schedule a technician to inspect the inside wiring and identify what needs to be repaired or rerouted. I’ll also confirm any service call fees upfront if they apply."
+    },
+    {
+      "id": 49,
+      "question": "My internet/TV service is down intermittently (works sometimes, then stops).",
+      "answer": "Intermittent service usually means a line signal issue, equipment problem, or area instability. I’ll check outage history, run diagnostics, and ask when it happens most. If it keeps repeating, I’ll schedule a technician and escalate the issue so it’s not treated as a one-off."
+    },
+    {
+      "id": 50,
+      "question": "The mobile app or online portal for my service is showing incorrect data or billing information.",
+      "answer": "I’m sorry the app/portal is showing incorrect info. First I’ll confirm whether it’s a display sync issue or actual billing/usage mismatch, and we’ll try basic fixes like logging out/in, clearing cache, and updating the app. If it’s still wrong, I’ll open a ticket for portal correction and confirm where to view the accurate statement in the meantime."
+    }
+  ]
+}

@@ -1,0 +1,723 @@
+{
+  "meta": {
+    "projectName": "Telnova AI",
+    "sourceWebApp": "Next.js app",
+    "sourceRepoFolder": "telnova-ai",
+    "generatedAt": "2026-02-23",
+    "productionDomain": "https://telnova.ai",
+    "apiBaseUrl": "https://telnova.ai/api",
+    "objective": "Build a complete Flutter mobile app equivalent to the current web app features and role-based flows."
+  },
+  "branding": {
+    "appDisplayName": "Telnova AI",
+    "logos": [
+      {
+        "source": "public/logo.svg",
+        "flutterTarget": "assets/images/logo.svg",
+        "usage": ["app header", "login/signup branding", "splash"]
+      },
+      {
+        "source": "public/logo.png",
+        "flutterTarget": "assets/images/logo.png",
+        "usage": ["fallback raster logo", "store listing icon source"]
+      }
+    ],
+    "otherAssets": [
+      {
+        "source": "public/noti.mp3",
+        "flutterTarget": "assets/audio/noti.mp3",
+        "usage": "play notification sound on new AI support response"
+      }
+    ]
+  },
+  "theme": {
+    "fontFamily": "Montserrat",
+    "light": {
+      "primary": "#204A99",
+      "background": "oklch(1 0 0)",
+      "foreground": "oklch(0.141 0.005 285.823)",
+      "card": "oklch(1 0 0)",
+      "border": "oklch(0.92 0.004 286.32)",
+      "muted": "oklch(0.967 0.001 286.375)",
+      "destructive": "oklch(0.577 0.245 27.325)"
+    },
+    "dark": {
+      "primary": "#204A99",
+      "background": "oklch(0.141 0.005 285.823)",
+      "foreground": "oklch(0.985 0 0)",
+      "card": "oklch(0.21 0.006 285.885)",
+      "border": "oklch(1 0 0 / 10%)",
+      "muted": "oklch(0.274 0.006 286.033)",
+      "destructive": "oklch(0.704 0.191 22.216)"
+    },
+    "shape": {
+      "baseRadiusRem": 0.65,
+      "radiusScale": {
+        "sm": "base - 4px",
+        "md": "base - 2px",
+        "lg": "base",
+        "xl": "base + 4px"
+      }
+    },
+    "statusColors": {
+      "open": "red",
+      "resolved": "green",
+      "inProgress": "blue",
+      "waiting": "yellow",
+      "closed": "gray",
+      "priorityUrgent": "red",
+      "priorityHigh": "red",
+      "priorityMedium": "default",
+      "priorityLow": "green"
+    }
+  },
+  "rolesAndAccess": {
+    "roles": ["user", "operator", "partner", "admin"],
+    "routing": {
+      "user": "dashboard and personal tickets",
+      "operator": "portal + support tickets management",
+      "partner": "portal overview only",
+      "admin": "portal + support tickets + users management"
+    },
+    "protectedModules": [
+      {
+        "module": "User Dashboard",
+        "allowedRoles": ["user"]
+      },
+      {
+        "module": "Portal",
+        "allowedRoles": ["admin", "operator", "partner"]
+      },
+      {
+        "module": "Portal Tickets",
+        "allowedRoles": ["admin", "operator"]
+      },
+      {
+        "module": "Users Management",
+        "allowedRoles": ["admin"]
+      }
+    ]
+  },
+  "authAndSession": {
+    "authType": "JWT stored in HTTP-only cookie named token (server checks cookies)",
+    "loginResponseAlsoReturnsToken": true,
+    "completeAuthFlow": {
+      "steps": [
+        "User signs up with fullName, email, phoneNumber, password.",
+        "User chooses verification code delivery channel: phone (SMS) or email.",
+        "Backend sends OTP using selected channel.",
+        "User submits OTP for verification.",
+        "After successful verification, user signs in with email/password.",
+        "Backend sets token cookie and app fetches profile (/auth/me).",
+        "Role-based redirect: user -> dashboard, admin/operator/partner -> portal.",
+        "User can logout, which clears auth cookie."
+      ],
+      "otpDeliveryOptions": {
+        "supported": ["phone", "email"],
+        "signupField": "verificationType",
+        "verifyField": "type",
+        "resendField": "type",
+        "otpExpiryMinutes": 5,
+        "otpLength": 6
+      }
+    },
+    "mobileImplementationRequirement": "Use an HTTP client with persistent cookie jar. Preserve and send Set-Cookie token for all authenticated API calls. If cookie handling is constrained, include Cookie header with token=<jwt> from login response.",
+    "cookiePolicy": {
+      "httpOnly": true,
+      "secureInProduction": true,
+      "sameSite": "strict",
+      "path": "/",
+      "maxAgeSeconds": 604800
+    },
+    "logoutBehavior": "POST /auth/logout clears token cookie"
+  },
+  "dataModels": {
+    "User": {
+      "fields": {
+        "_id": "string",
+        "fullName": "string",
+        "email": "string",
+        "password": "string (min 8, uppercase, lowercase, number, special @$!%*?&)",
+        "phoneNumber": "string E.164",
+        "emailVerified": "boolean",
+        "phoneVerified": "boolean",
+        "role": "user|operator|partner|admin",
+        "isActive": "boolean",
+        "subscription": {
+          "status": "inactive|active|trialing|past_due|canceled|unpaid",
+          "plan": "free|basic|premium|enterprise",
+          "stripeCustomerId": "string|null",
+          "stripeSubscriptionId": "string|null"
+        }
+      }
+    },
+    "Ticket": {
+      "fields": {
+        "ticketNumber": "string (TN + year + month + timestamp)",
+        "userId": "ObjectId",
+        "userEmail": "string",
+        "userName": "string",
+        "conversationHistory": [
+          {
+            "role": "user|assistant",
+            "content": "string",
+            "timestamp": "date"
+          }
+        ],
+        "category": "Internet/Connectivity Issues|TV Service Issues|Mobile Service Issues|Billing & Payments|Installation & Technician|Equipment & Hardware|Account Management|Service Changes|Other",
+        "priority": "low|medium|high|urgent",
+        "status": "open|resolved",
+        "resolvedAt": "date|null",
+        "resolvedBy": "ObjectId|null"
+      }
+    }
+  },
+  "supportKnowledgeBase": {
+    "sourceFile": "data/support-faq.json",
+    "purpose": "FAQ-first responses for support chat before model generation",
+    "shape": {
+      "supportPhone": "string",
+      "faqs": [
+        {
+          "id": "number",
+          "question": "string",
+          "answer": "string"
+        }
+      ]
+    },
+    "chatRuntimeBehavior": [
+      "Support chat checks FAQ direct service-issue intents first.",
+      "Then checks semantic FAQ match with threshold before OpenAI fallback.",
+      "Support phone from FAQ file is appended to answers when missing."
+    ]
+  },
+  "api": {
+    "baseUrl": "https://telnova.ai/api",
+    "common": {
+      "contentType": "application/json",
+      "authTransport": "cookie token",
+      "errorShape": {
+        "success": false,
+        "message": "string"
+      }
+    },
+    "endpoints": [
+      {
+        "feature": "auth",
+        "name": "Signup",
+        "method": "POST",
+        "path": "/auth/signup",
+        "url": "https://telnova.ai/api/auth/signup",
+        "authRequired": false,
+        "request": {
+          "fullName": "string",
+          "email": "string",
+          "password": "string",
+          "phoneNumber": "string E.164",
+          "verificationType": "email|phone (default phone)"
+        },
+        "successStatus": 201,
+        "response": {
+          "success": true,
+          "message": "string",
+          "user": "user object without password",
+          "requiresVerification": true,
+          "verificationType": "email|phone"
+        },
+        "errors": [400, 409, 500]
+      },
+      {
+        "feature": "auth",
+        "name": "Verify OTP",
+        "method": "POST",
+        "path": "/auth/verify-otp",
+        "url": "https://telnova.ai/api/auth/verify-otp",
+        "authRequired": false,
+        "request": {
+          "userId": "string",
+          "email": "string optional",
+          "otp": "6-digit string",
+          "type": "email|phone",
+          "phoneMethod": "sms (optional)"
+        },
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "message": "Email verified successfully | Phone verified successfully",
+          "user": "updated user object"
+        },
+        "errors": [400, 404, 500]
+      },
+      {
+        "feature": "auth",
+        "name": "Resend OTP",
+        "method": "POST",
+        "path": "/auth/resend-otp",
+        "url": "https://telnova.ai/api/auth/resend-otp",
+        "authRequired": false,
+        "request": {
+          "userId": "string",
+          "email": "string optional",
+          "type": "email|phone (default email)",
+          "purpose": "verification (default)"
+        },
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "message": "OTP sent successfully via email|SMS",
+          "expiresAt": "datetime"
+        },
+        "rateLimitBehavior": {
+          "status": 429,
+          "body": {
+            "success": false,
+            "message": "wait before requesting new OTP",
+            "remainingSeconds": "number"
+          }
+        },
+        "errors": [400, 404, 429, 500]
+      },
+      {
+        "feature": "auth",
+        "name": "Signin",
+        "method": "POST",
+        "path": "/auth/signin",
+        "url": "https://telnova.ai/api/auth/signin",
+        "authRequired": false,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "message": "Login successful",
+          "user": "user object without password",
+          "token": "jwt"
+        },
+        "sideEffect": "Sets HTTP-only cookie token",
+        "errors": [400, 401, 500]
+      },
+      {
+        "feature": "auth",
+        "name": "Get profile",
+        "method": "GET",
+        "path": "/auth/me",
+        "url": "https://telnova.ai/api/auth/me",
+        "authRequired": true,
+        "request": {},
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "user": "user object"
+        },
+        "errors": [401, 404, 500]
+      },
+      {
+        "feature": "auth",
+        "name": "Logout",
+        "method": "POST",
+        "path": "/auth/logout",
+        "url": "https://telnova.ai/api/auth/logout",
+        "authRequired": false,
+        "request": {},
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "message": "Logged out successfully"
+        },
+        "sideEffect": "Clears token cookie"
+      },
+      {
+        "feature": "support-chat",
+        "name": "AI support chat",
+        "method": "POST",
+        "path": "/support/chat",
+        "url": "https://telnova.ai/api/support/chat",
+        "authRequired": true,
+        "request": {
+          "messages": [
+            {
+              "role": "user|assistant",
+              "content": "string"
+            }
+          ]
+        },
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "message": "assistant response",
+          "source": "faq-direct-intent|faq (optional)",
+          "faqId": "number (optional)",
+          "confidence": "number (optional)"
+        },
+        "knowledgeBase": {
+          "file": "data/support-faq.json",
+          "matchModes": ["direct-intent", "semantic-match"],
+          "fallback": "OpenAI response generation"
+        },
+        "errors": [400, 401, 500, 502]
+      },
+      {
+        "feature": "tickets-user",
+        "name": "Create ticket",
+        "method": "POST",
+        "path": "/support/ticket",
+        "url": "https://telnova.ai/api/support/ticket",
+        "authRequired": true,
+        "request": {
+          "conversationHistory": [
+            {
+              "role": "user|assistant",
+              "content": "string",
+              "timestamp": "datetime optional"
+            }
+          ]
+        },
+        "successStatus": 201,
+        "response": {
+          "success": true,
+          "ticket": {
+            "ticketNumber": "string",
+            "category": "string",
+            "priority": "string",
+            "status": "open",
+            "createdAt": "datetime"
+          }
+        },
+        "errors": [400, 401, 404, 500]
+      },
+      {
+        "feature": "tickets-user",
+        "name": "List own tickets",
+        "method": "GET",
+        "path": "/support/ticket",
+        "url": "https://telnova.ai/api/support/ticket?limit=<optional>",
+        "authRequired": true,
+        "query": {
+          "limit": "number optional"
+        },
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "tickets": "array",
+          "count": "number"
+        },
+        "errors": [401, 404, 500]
+      },
+      {
+        "feature": "tickets-user",
+        "name": "Own ticket details",
+        "method": "GET",
+        "path": "/support/ticket/{ticketNumber}",
+        "url": "https://telnova.ai/api/support/ticket/{ticketNumber}",
+        "authRequired": true,
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "ticket": {
+            "ticketNumber": "string",
+            "category": "string",
+            "priority": "string",
+            "status": "string",
+            "conversationHistory": "array",
+            "createdAt": "datetime",
+            "updatedAt": "datetime",
+            "resolvedAt": "datetime|null"
+          }
+        },
+        "errors": [400, 401, 404, 500]
+      },
+      {
+        "feature": "tickets-portal",
+        "name": "All tickets (admin/operator)",
+        "method": "GET",
+        "path": "/support/tickets/all",
+        "url": "https://telnova.ai/api/support/tickets/all?page=1&limit=20&status=&priority=&category=&search=",
+        "authRequired": true,
+        "roles": ["admin", "operator"],
+        "query": {
+          "page": "number default 1",
+          "limit": "number default 20",
+          "status": "open|resolved optional",
+          "priority": "low|medium|high|urgent optional",
+          "category": "string optional",
+          "search": "string optional"
+        },
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "tickets": "array",
+          "pagination": {
+            "currentPage": "number",
+            "totalPages": "number",
+            "totalCount": "number",
+            "limit": "number"
+          }
+        },
+        "errors": [401, 403, 404, 500]
+      },
+      {
+        "feature": "tickets-portal",
+        "name": "Ticket details (admin/operator)",
+        "method": "GET",
+        "path": "/support/tickets/{ticketNumber}/details",
+        "url": "https://telnova.ai/api/support/tickets/{ticketNumber}/details",
+        "authRequired": true,
+        "roles": ["admin", "operator"],
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "ticket": "full ticket including conversationHistory"
+        },
+        "errors": [400, 401, 403, 404, 500]
+      },
+      {
+        "feature": "tickets-portal",
+        "name": "Mark ticket resolved (admin/operator)",
+        "method": "PATCH",
+        "path": "/support/tickets/{ticketNumber}/resolve",
+        "url": "https://telnova.ai/api/support/tickets/{ticketNumber}/resolve",
+        "authRequired": true,
+        "roles": ["admin", "operator"],
+        "request": {},
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "message": "Ticket marked as resolved successfully",
+          "ticket": {
+            "ticketNumber": "string",
+            "status": "resolved",
+            "resolvedAt": "datetime",
+            "resolvedBy": "userId"
+          }
+        },
+        "errors": [400, 401, 403, 404, 500]
+      },
+      {
+        "feature": "users-admin",
+        "name": "List users (admin)",
+        "method": "GET",
+        "path": "/users",
+        "url": "https://telnova.ai/api/users?page=1&limit=20&search=",
+        "authRequired": true,
+        "roles": ["admin"],
+        "query": {
+          "page": "number default 1",
+          "limit": "number default 20 max 100",
+          "search": "string optional"
+        },
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "users": "array",
+          "pagination": {
+            "currentPage": "number",
+            "totalPages": "number",
+            "totalCount": "number",
+            "limit": "number"
+          }
+        },
+        "errors": [401, 403, 404, 500]
+      },
+      {
+        "feature": "users-admin",
+        "name": "Update user (admin)",
+        "method": "PATCH",
+        "path": "/users/{userId}",
+        "url": "https://telnova.ai/api/users/{userId}",
+        "authRequired": true,
+        "roles": ["admin"],
+        "request": {
+          "role": "user|operator|partner|admin (optional)",
+          "isActive": "boolean (optional)",
+          "subscription": {
+            "plan": "free|basic|premium|enterprise"
+          }
+        },
+        "successStatus": 200,
+        "response": {
+          "success": true,
+          "message": "User updated successfully",
+          "user": "updated user object"
+        },
+        "errors": [400, 401, 403, 404, 500]
+      }
+    ]
+  },
+  "features": [
+    {
+      "id": "F01",
+      "name": "Authentication",
+      "screens": [
+        "Login",
+        "Signup details",
+        "Verification method",
+        "OTP verify"
+      ],
+      "endpoints": [
+        "/auth/signup",
+        "/auth/verify-otp",
+        "/auth/resend-otp",
+        "/auth/signin",
+        "/auth/me",
+        "/auth/logout"
+      ],
+      "requirements": [
+        "Complete auth flow: signup -> choose OTP channel (phone/email) -> verify OTP -> signin -> profile -> logout",
+        "Email + password login",
+        "Signup supports selectable OTP channel: phone (SMS) or email",
+        "Store role and route to /dashboard for user role else /portal",
+        "Persist session across app launches",
+        "Show API error messages"
+      ]
+    },
+    {
+      "id": "F02",
+      "name": "Sign up with OTP verification",
+      "screens": ["Signup details", "Verification method", "OTP verify"],
+      "endpoints": ["/auth/signup", "/auth/verify-otp", "/auth/resend-otp"],
+      "requirements": [
+        "Collect fullName, email, phoneNumber(E.164), password, confirmPassword",
+        "Enforce password policy: min 8 + uppercase + lowercase + number + special",
+        "Choose verificationType: email or phone",
+        "OTP length must be exactly 6 digits",
+        "Handle resend OTP cooldown using 429 remainingSeconds"
+      ]
+    },
+    {
+      "id": "F03",
+      "name": "User support dashboard",
+      "screens": ["Dashboard", "Chat panel", "Recent tickets panel"],
+      "endpoints": [
+        "/support/chat",
+        "/support/ticket",
+        "/support/ticket?limit=4"
+      ],
+      "requirements": [
+        "Chat thread UI with user/assistant bubbles",
+        "Send full message history to AI endpoint",
+        "Play notification sound when assistant responds",
+        "Auto-create ticket when user requests escalation/human support",
+        "Close chat after ticket creation"
+      ]
+    },
+    {
+      "id": "F04",
+      "name": "User tickets",
+      "screens": ["Tickets list", "Ticket detail"],
+      "endpoints": ["/support/ticket", "/support/ticket/{ticketNumber}"],
+      "requirements": [
+        "List own tickets with status and priority",
+        "Filter list by status",
+        "Open ticket detail with timestamps and conversation history"
+      ]
+    },
+    {
+      "id": "F05",
+      "name": "Portal dashboard (non-user roles)",
+      "screens": ["Portal home", "Role sidebar"],
+      "endpoints": [],
+      "requirements": [
+        "Route admin/operator/partner users to portal",
+        "Render role-based navigation visibility",
+        "Admin dashboard metric cards currently static values"
+      ]
+    },
+    {
+      "id": "F06",
+      "name": "Portal ticket operations (admin/operator)",
+      "screens": ["Portal tickets list", "Ticket details dialog"],
+      "endpoints": [
+        "/support/tickets/all",
+        "/support/tickets/{ticketNumber}/details",
+        "/support/tickets/{ticketNumber}/resolve"
+      ],
+      "requirements": [
+        "Paginated table of tickets",
+        "Search + filters (status, priority)",
+        "Open detailed ticket conversation",
+        "Resolve open tickets"
+      ]
+    },
+    {
+      "id": "F07",
+      "name": "Users management (admin only)",
+      "screens": ["Users list", "Edit user modal"],
+      "endpoints": ["/users", "/users/{userId}"],
+      "requirements": [
+        "Paginated searchable user table",
+        "Edit role, active status, and subscription plan",
+        "Restrict module to admin role"
+      ]
+    },
+    {
+      "id": "F08",
+      "name": "Subscription pages",
+      "screens": ["Subscription plans", "Current plan state"],
+      "endpoints": [],
+      "requirements": [
+        "Render plans: monthly, yearly, lifetime",
+        "Display current user plan",
+        "Plan purchase/billing APIs are not implemented yet in backend"
+      ]
+    }
+  ],
+  "knownGapsAndNotes": [
+    "Web UI includes statuses in_progress, waiting_customer, closed, but backend ticket model currently supports only open and resolved.",
+    "Signin UI references 403 verification message, but signin API currently returns 400/401/500 paths in code.",
+    "Portal admin dashboard metrics are static in frontend and not backed by APIs yet.",
+    "Forgot password flow is present as UI link only; no reset-password API routes currently exposed."
+  ],
+  "flutterBuildRequirements": {
+    "minimumModules": [
+      "Authentication",
+      "Role-based routing",
+      "Support Chat",
+      "User Tickets",
+      "Portal Tickets",
+      "Users Management",
+      "Subscription UI"
+    ],
+    "recommendedPackages": [
+      "dio (HTTP client)",
+      "dio_cookie_manager + cookie_jar (session cookies)",
+      "flutter_riverpod or bloc (state)",
+      "go_router (navigation)",
+      "shared_preferences or secure_storage (local persistence)",
+      "flutter_svg (logo.svg)",
+      "just_audio or audioplayers (notification sound)",
+      "intl (date/time formatting)"
+    ],
+    "architecture": {
+      "style": "feature-first",
+      "layers": [
+        "presentation",
+        "application/state",
+        "data/repositories",
+        "network/api_client"
+      ],
+      "requiredClients": [
+        "publicApiClient (unauthenticated)",
+        "authApiClient (cookie-aware authenticated)"
+      ]
+    },
+    "qualityRequirements": [
+      "Null-safe Dart",
+      "Centralized API error mapper",
+      "Retry strategy only for idempotent GET calls",
+      "Loading/empty/error states on every network screen",
+      "Role guards for protected routes"
+    ]
+  },
+  "assetIntegration": {
+    "flutterPubspecExample": {
+      "assets": [
+        "assets/images/logo.svg",
+        "assets/images/logo.png",
+        "assets/audio/noti.mp3"
+      ]
+    },
+    "logoRequirement": "Use project logos from assets/images in app header/auth screens/splash and avoid placeholder branding."
+  }
+}

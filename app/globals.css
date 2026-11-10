@@ -1,0 +1,254 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  /* ── Expose both brand colors as named tokens ── */
+  --color-brand-violet: var(--brand-violet);
+  --color-brand-slate: var(--brand-slate);
+  --font-headline: var(--font-headline);
+  --font-body: var(--font-body);
+}
+
+/* ─── LIGHT THEME ─────────────────────────────────────────────
+   Aesthetic: Cosmic Violet × Slate
+   Cool lavender canvas · Plum violet primary · Slate charcoal secondary
+   Violet = CTAs, links, highlights
+   Slate  = headers, cards, nav, structural UI
+──────────────────────────────────────────────────────────────── */
+:root {
+  --radius: 0.6rem;
+
+  /* ── Brand tokens (use these in components directly) ── */
+  --brand-violet: oklch(0.4 0.2 300);
+  --brand-slate: oklch(0.3 0.01 255);
+
+  /* Backgrounds */
+  --background: oklch(0.98 0.008 295);
+  --foreground: oklch(0.13 0.03 295);
+
+  /* Cards — slate-tinted for structural depth */
+  --card: oklch(0.99 0.004 270);
+  --card-foreground: oklch(0.13 0.03 295);
+
+  /* Popovers */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.13 0.03 295);
+
+  /* Primary — rich plum violet (CTAs, active states, links) */
+  --primary: oklch(0.4 0.2 300);
+  --primary-foreground: oklch(0.97 0.008 295);
+
+  /* Secondary — cool slate charcoal (nav, badges, structural elements) */
+  --secondary: oklch(0.3 0.01 255);
+  --secondary-foreground: oklch(0.97 0.005 260);
+
+  /* Muted — light lavender-grey */
+  --muted: oklch(0.94 0.012 285);
+  --muted-foreground: oklch(0.52 0.025 285);
+
+  /* Accent — soft slate-lavender for hover surfaces */
+  --accent: oklch(0.91 0.018 280);
+  --accent-foreground: oklch(0.28 0.012 260);
+
+  /* Destructive */
+  --destructive: oklch(0.57 0.22 27);
+
+  /* Borders & Inputs */
+  --border: oklch(0.88 0.014 285);
+  --input: oklch(0.91 0.01 285);
+  --ring: oklch(0.5 0.22 300);
+
+  /* Charts — violet → slate spectrum */
+  --chart-1: oklch(0.4 0.2 300); /* brand violet */
+  --chart-2: oklch(0.55 0.16 300); /* mid violet */
+  --chart-3: oklch(0.3 0.01 255); /* brand slate */
+  --chart-4: oklch(0.48 0.012 255); /* mid slate */
+  --chart-5: oklch(0.65 0.18 310); /* violet-fuchsia */
+
+  /* Sidebar — slate-flavored for strong structural contrast */
+  --sidebar: oklch(0.22 0.012 258);
+  --sidebar-foreground: oklch(0.93 0.006 280);
+  --sidebar-primary: oklch(0.62 0.22 300);
+  --sidebar-primary-foreground: oklch(0.1 0.025 295);
+  --sidebar-accent: oklch(0.3 0.014 258);
+  --sidebar-accent-foreground: oklch(0.93 0.006 280);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.5 0.22 300);
+}
+
+/* ─── DARK THEME ──────────────────────────────────────────────
+   Deep space-indigo canvas · Bright violet primary · Cool slate secondary
+   Feels: Premium dark SaaS, bold yet grounded
+──────────────────────────────────────────────────────────────── */
+.dark {
+  /* ── Brand tokens (dark variants) ── */
+  --brand-violet: oklch(0.62 0.24 300);
+  --brand-slate: oklch(0.55 0.012 255);
+
+  /* Backgrounds */
+  --background: oklch(0.11 0.025 295);
+  --foreground: oklch(0.95 0.008 290);
+
+  /* Cards — slightly slate-shifted for layering */
+  --card: oklch(0.16 0.022 280);
+  --card-foreground: oklch(0.95 0.008 290);
+
+  /* Popovers */
+  --popover: oklch(0.16 0.022 280);
+  --popover-foreground: oklch(0.95 0.008 290);
+
+  /* Primary — vivid bright violet */
+  --primary: oklch(0.62 0.24 300);
+  --primary-foreground: oklch(0.1 0.025 295);
+
+  /* Secondary — cool mid-slate (buttons, tags, nav items) */
+  --secondary: oklch(0.32 0.014 258);
+  --secondary-foreground: oklch(0.93 0.006 275);
+
+  /* Muted */
+  --muted: oklch(0.19 0.018 280);
+  --muted-foreground: oklch(0.63 0.02 285);
+
+  /* Accent — slate hover surface */
+  --accent: oklch(0.24 0.016 265);
+  --accent-foreground: oklch(0.88 0.01 275);
+
+  /* Destructive */
+  --destructive: oklch(0.66 0.2 22);
+
+  /* Borders & Inputs */
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: oklch(0.62 0.24 300);
+
+  /* Charts */
+  --chart-1: oklch(0.62 0.24 300); /* brand violet */
+  --chart-2: oklch(0.75 0.18 300); /* light violet */
+  --chart-3: oklch(0.55 0.012 255); /* brand slate */
+  --chart-4: oklch(0.68 0.014 255); /* light slate */
+  --chart-5: oklch(0.68 0.22 315); /* violet-fuchsia */
+
+  /* Sidebar — deep slate for strong nav contrast */
+  --sidebar: oklch(0.14 0.018 265);
+  --sidebar-foreground: oklch(0.93 0.006 280);
+  --sidebar-primary: oklch(0.62 0.24 300);
+  --sidebar-primary-foreground: oklch(0.1 0.025 295);
+  --sidebar-accent: oklch(0.22 0.016 262);
+  --sidebar-accent-foreground: oklch(0.93 0.006 280);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: oklch(0.48 0.2 300);
+}
+
+/* ─── BASE STYLES ─────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Refined focus ring */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: oklch(0.62 0.24 300 / 20%);
+    color: var(--foreground);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.38 0.012 258 / 50%);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.5 0.2 300 / 65%);
+  }
+}
+
+/* ─── UTILITY CLASSES ─────────────────────────────────────────
+   Convenience classes to apply brand colors directly in JSX
+──────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .bg-brand-violet {
+    background-color: var(--brand-violet);
+  }
+  .bg-brand-slate {
+    background-color: var(--brand-slate);
+  }
+  .text-brand-violet {
+    color: var(--brand-violet);
+  }
+  .text-brand-slate {
+    color: var(--brand-slate);
+  }
+  .border-brand-violet {
+    border-color: var(--brand-violet);
+  }
+  .border-brand-slate {
+    border-color: var(--brand-slate);
+  }
+}
